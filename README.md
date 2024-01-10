@@ -1,5 +1,5 @@
 # RP2040PicoW
-RP2040 Pico W, Sunfounder Kepler kit, Waveshare and Pimoroni code for sharing.
+RP2040 Pico W, SunFounder Kepler kit, Waveshare and Pimoroni code for sharing.
 
 ## Well met,
 Initial day with the Kepler kit, continuing the Day's of yorecode.
