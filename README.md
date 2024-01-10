@@ -4,6 +4,7 @@ RP2040 Pico W, Sunfounder Kepler kit, Waveshare and Pimoroni code for sharing.
 ## Well met,
 Initial day with the Kepler kit, continuing the Day's of yorecode.
 
+## LCD, Charger, Wifi web
 First up is a little text scrolling routine for insertion in Paul McWhorter's lcd1602.py, which is configured for Pin 6,7 an I<sup>2</sup>C 1.
 
 New to github, this is not a fork, pull request yet, just a code fragment for inclusion in the LCD class of lcd1602.py, add to the bottom of the LCD class.
