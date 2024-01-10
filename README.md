@@ -1,13 +1,20 @@
 # RP2040PicoW
 RP2040 Pico W, Sunfounder Kepler kit, Waveshare and Pimoroni code for sharing.
 
-Initial day, starting out on Day's of yorecode.
+## Well met,
+Initial day with the Kepler kit, continuing the Day's of yorecode.
 
 First up is a little text scrolling routine for insertion in Paul McWhorter's lcd1602.py, which is configured for Pin 6,7 an I<sup>2</sup>C 1.
 
 New to github, this is not a fork, pull request yet, just a code fragment for inclusion in the LCD class of lcd1602.py, add to the bottom of the LCD class.
 First day, will polish, maybe.
 
+Paul McWhorter's Pico W Kepler kit introduction, lessons, with hardware and software tutorials.
+Lessons 22, 24, 28 in particular, for hints on LCD1602, charger module, wifi web apis 
+ 
+https://www.youtube.com/playlist?list=PLGs0VKk2DiYz8js1SJog21cDhkBqyAhC5
+
+Add to lcd1602.py, as methods in lcd1602.py from lesson 22
 ```python
     def scrollright(self, x, y, str):
         if x < 0:
