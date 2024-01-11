@@ -39,7 +39,7 @@ Add to lcd1602.py, as methods in lcd1602.py from lesson 22
                 self.send_data(ord(chr))
 
             x = x + 1
-            time.sleep(0.3)
+            time.sleep(0.4)
 
     def scrollleft(self, x, y, str):
         pos = 0
@@ -53,16 +53,17 @@ Add to lcd1602.py, as methods in lcd1602.py from lesson 22
             y = 1
 
         # Loop while clearing and shuffling
-        while pos < len(str) - 16:
+        self.write(x,y,str[:16])
+        while pos < len(str) - 15:
             self.clear()
 
             # Move cursor
             addr = 0x80 + 0x40 * y + x
             self.send_command(addr)
 
-            for chr in str[pos:]:
+            for chr in str[pos:pos+16]:
                 self.send_data(ord(chr))
 
             pos = pos + 1
-            time.sleep(0.3)
+            time.sleep(0.4)
 ```
