@@ -3,7 +3,7 @@
 # License: MIT
 #
 # Started: January 10, 2024
-# Modified: 2024-01-10/04:27-0500 
+# Modified: 2024-01-11/11:02-0500 
 # Tectonics: Tested with Micropython, Dec 23, 2023 uf2.
 #            Update lcd1602.py with listings in README
 #            flash secrets.py with ssid= and password=
@@ -21,10 +21,14 @@ import lcd1602
 # pick an api or both.
 astros = False
 jokes = True
+
+# Get some stamps
+starttime = time.localtime()
     
 # not forever
 passes = 0
 limit = 100
+delay = 0.125
 
 try:
     lcd = lcd1602.LCD()
@@ -36,10 +40,12 @@ try:
     wlan.active(True)
     wlan.connect(secrets.ssid, secrets.password)
 
+    tries = 0
     while not wlan.isconnected():
-        print("Waiting for " + secrets.ssid + "...")
+        tries = tries + 1
+        print("\rWaiting for " + secrets.ssid + "..." + str(tries), end='')
         time.sleep(1)
-
+    print()
 
     if astros:
         astronauts = urequests.get("http://api.open-notify.org/astros.json").json()
@@ -64,11 +70,21 @@ try:
             #lcd.write(0, 1, txt)
             print(txt)
             lcd.scrollleft(0, 1, txt)
-            time.sleep(3)
+            time.sleep(delay+3)
+            if delay < 4:
+                delay = delay * 2
 
     wlan.disconnect()
     wlan.active(False)
 
 except KeyboardInterrupt:
+    # stamp
+    nowtime = time.localtime()
+    yy,mn,dd,hh,mm,ss,cc,tz = nowtime
+    stamp = "{:02d}{:02d}{:02d}  {:02d}:{:02d}:{:02d}".format(yy-2000,mn,dd,hh,mm,ss)
+    
+    lcd.clear()
+    lcd.write(0,0,"program stopped")
+    lcd.write(0,1,stamp)
     wlan.disconnect()
     wlan.active(False)
