@@ -18,14 +18,10 @@ https://www.youtube.com/playlist?list=PLGs0VKk2DiYz8js1SJog21cDhkBqyAhC5
 Add to lcd1602.py, as methods in lcd1602.py from lesson 22
 ```python
     def scrollright(self, x, y, str):
-        if x < 0:
-            x = 0
-        if x > 15:
-            x = 15
-        if y < 0:
-            y = 0
-        if y > 1:
-            y = 1
+        # Limit to 0 to 15 inclusive for 16 columns
+        x = max(min(15, x), 0)
+        # Limit from 0 to 1 inclusice for 2 lines
+        y = max(min(1, y), 0)
 
         # Loop while clearing and shuffling
         while x < 16 - len(str):
@@ -43,14 +39,8 @@ Add to lcd1602.py, as methods in lcd1602.py from lesson 22
 
     def scrollleft(self, x, y, str):
         pos = 0
-        if x < 0:
-            x = 0
-        if x > 15:
-            x = 15
-        if y < 0:
-            y = 0
-        if y > 1:
-            y = 1
+        x = max(min(15, x), 0)
+        y = max(min(1, y), 0)
 
         # Loop while clearing and shuffling
         self.write(x,y,str[:16])
